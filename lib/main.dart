@@ -1,6 +1,8 @@
 import 'package:blocstatemanagement/bloc/counter_bloc/counter_bloc.dart';
+import 'package:blocstatemanagement/bloc/login_bloc/login_bloc.dart';
 import 'package:blocstatemanagement/bloc/todo_bloc/todo_bloc.dart';
 import 'package:blocstatemanagement/ui/counter_screen.dart';
+import 'package:blocstatemanagement/ui/login/login_screen.dart';
 import 'package:blocstatemanagement/ui/todo/todo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => CounterBloc()),
         BlocProvider(create: (_) => ToDoBloc()),
+        BlocProvider(create: (_) => LoginBloc()),
 
     ],
       child: MaterialApp(
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TodoScreen(),
+      home: const LoginScreen(),
       )
     );
 
