@@ -7,6 +7,8 @@ import 'package:blocstatemanagement/ui/todo/todo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/home_bloc/home_bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => CounterBloc()),
         BlocProvider(create: (_) => ToDoBloc()),
         BlocProvider(create: (_) => LoginBloc()),
+        BlocProvider(create: (_) => ProductBloc()),
 
     ],
       child: MaterialApp(

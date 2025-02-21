@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'; // For Bloc
 import '../../bloc/login_bloc/login_bloc.dart';
 import '../../bloc/login_bloc/login_event.dart';
 import '../../bloc/login_bloc/login_state.dart';
+import '../home/home_screen.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -23,6 +24,8 @@ class LoginForm extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  LoginForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
@@ -30,6 +33,10 @@ class LoginForm extends StatelessWidget {
         if (state.loginStatus == LoginStatus.success) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Login successful')),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
           );
         } else if (state.loginStatus == LoginStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -40,7 +47,7 @@ class LoginForm extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.deepPurple.shade200, Colors.deepPurple.shade500],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -52,13 +59,12 @@ class LoginForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.account_circle,
                   size: 100,
                   color: Colors.white,
                 ),
                 const SizedBox(height: 40),
-                // Username Field
                 TextField(
                   controller: _usernameController,
                   onChanged: (email) {
@@ -66,18 +72,17 @@ class LoginForm extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                     hintText: 'Username',
-                    hintStyle: TextStyle(color: Colors.white54),
+                    hintStyle: const TextStyle(color: Colors.white54),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.2),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixIcon: Icon(Icons.person, color: Colors.white),
+                    prefixIcon: const Icon(Icons.person, color: Colors.white),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 20),
-                // Password Field
                 TextField(
                   controller: _passwordController,
                   obscureText: true,
@@ -86,42 +91,39 @@ class LoginForm extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.white54),
+                    hintStyle: const TextStyle(color: Colors.white54),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.2),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 30),
-                // Login Button
                 ElevatedButton(
                   onPressed: () {
                     context.read<LoginBloc>().add(LoginApi());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
-                    padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                    backgroundColor: Colors.transparent,
+                    padding: const EdgeInsets.symmetric(horizontal: 153, vertical: 15),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Login',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Forgot Password Text
                 TextButton(
                   onPressed: () {
-                    // Implement forgot password logic here
                   },
-                  child: Text(
-                    'Forgot Password?',
+                  child: const Text(
+                    'Forget Password ?',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
