@@ -10,6 +10,11 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Checkout', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.deepPurple,
+      ),
+    );
   }
 }
